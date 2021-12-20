@@ -1,0 +1,101 @@
+:root {
+	--shadow: -3px 5px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: #076407;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3em;
+}
+
+
+
+.hand {
+    display: flex;
+    margin: auto auto;
+    gap: 5em;   
+    max-width: 100vh;
+    overflow:auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hand::-webkit-scrollbar{
+    display: none;
+}
+    
+/* Hide scrollbar for IE, Edge and Firefox */
+.hand{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+} 
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 225px;
+    min-width: 150px;
+    font-size: 5rem;
+    box-shadow: var(--shadow);
+    background-color: white;
+}
+
+.values {
+    display: flex;
+    gap: 2em;
+}
+
+.value {
+    color: gold;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 5px black;
+}
+
+.bust {
+    color: red;
+}
+
+.options {
+    display: flex;
+    gap: 1em;
+}
+
+.options > button {
+    width: 5em;
+    height: 3em;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -1px 2px 1px 2px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.hit {
+    background-color: rgb(0, 117, 133);
+}
+
+.stand {
+    background-color: rgb(128, 13, 61);
+}
+
+
