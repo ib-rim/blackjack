@@ -1,8 +1,8 @@
 # Blackjack
 
-Simple one-player game of Blackjack. The goal is to get as close to 21 as possible without going over. 
+Simple one-player game of Blackjack. The goal is to get the value of your hand as close to 21 as possible without going over. 
 
-If the value of your hand goes over 21, you are bust and you lose.
+If the value goes over 21, you are bust and you lose.
 
 ### Card Values
 
@@ -14,7 +14,7 @@ If the value of your hand goes over 21, you are bust and you lose.
 ### Options
 
  - Hit: Draw a new card 
- - Stand: Stop drawing cards
+ - Stand: Stop drawing cards and evaluate your hand
  - Reset: Reset game and draw a new hand
 
 ### Link
