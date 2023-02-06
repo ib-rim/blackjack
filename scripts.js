@@ -26,12 +26,20 @@ class Deck {
     }
 }
 
-const hand = document.querySelector("#hand1");
-const optionsElem = document.querySelector("#options");
-const valueElem = document.querySelector("#value");
+const hand = document.getElementById("hand1");
+const optionsElem = document.getElementById("options");
+const valueElem = document.getElementById("value");
+const hitButton = document.getElementById("hit-btn");
+const standButton = document.getElementById("stand-btn");
+const resetButton = document.getElementById("reset-btn");
+
+hitButton.addEventListener("click", hit);
+standButton.addEventListener("click", stand);
+resetButton.addEventListener("click", reset);
 let deck;
 reset();
 
+// Reset deck and hand
 function reset() {
     valueElem.style.display = "none";
     valueElem.classList.remove("bust");
@@ -56,6 +64,7 @@ function reset() {
     updateSuitColor(hand.children[1].children[1]);
 }
 
+// Add new card to hand then evaluate
 function hit() {
     let card = deck.getRandomCard();
     const cardElem = document.createElement("div");
@@ -75,22 +84,24 @@ function hit() {
     }
 }
 
+// Evaluate hand and end game
 function stand() {
     let [value1, value2] = evaluateHand();
 
     endGame(value1, value2);
 }
 
+// Evaluate value of hand 
 function evaluateHand() {
-    let totalValue1 = 0; //All Aces are 1s
-    let totalValue2 = 0; //1 Ace is 11
+    let totalValue1 = 0; // All Aces are 1s
+    let totalValue2 = 0; // 1 Ace is 11
 
-    //Add values of each card in hand
+    // Add values of each card in hand
     for (let i = 0; i < hand.children.length; i++) {
         let rank = hand.children[i].children[0].textContent;
         if (rank === "A") {
             totalValue1 += 1;
-            //Limit of one 11 value Ace per hand
+            // Limit of one 11 value Ace per hand
             totalValue2 = totalValue1 + 10;
         }
         else {
@@ -102,6 +113,8 @@ function evaluateHand() {
     return [totalValue1, totalValue2];
 }
 
+// Num: Integer between 1 and 4 inclusive
+// Suit: ♠, ♥, ♦, ♣
 function numToSuit(num) {
     if (num == 1) {
         return "♠";
@@ -117,6 +130,8 @@ function numToSuit(num) {
     }
 }
 
+// Num: Integer between 1 and 13 inclusive
+// Rank: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
 function numToRank(num) {
     if (num == 1) {
         return "A";
@@ -135,6 +150,8 @@ function numToRank(num) {
     }
 }
 
+// Rank: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
+// Value: Integer between 2 and 10 inclusive
 function rankToValue(rank) {
     if (rank >= 2 && rank <= 10) {
         return parseInt(rank);
@@ -144,12 +161,14 @@ function rankToValue(rank) {
     }
 }
 
+// Change text color to red if suit is heart or diamonds
 function updateSuitColor(cardElem) {
     if (cardElem.textContent === "♥" || cardElem.textContent === "♦") {
         cardElem.style.color = "red";
     }
 }
 
+// Show evaluated value of hand and bust if over 21
 function displayValue(value) {
     if (value > 21) {
         valueElem.classList.add("bust");
@@ -161,6 +180,7 @@ function displayValue(value) {
     valueElem.style.display = "block";
 }
 
+// Display value of hand and remove ability to hit or stand
 function endGame(value1, value2) {
     //1: If both over or if <21 and 2 > 21
     //2: If both under
